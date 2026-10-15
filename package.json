@@ -1,0 +1,16 @@
+{
+  "name": "kiro-acp-bridge",
+  "version": "0.1.0",
+  "description": "Experimental Kiro ACP provider for OpenCode with OpenCode-owned tool execution",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/jovylle/kiro-acp-bridge.git" },
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "probe": "node probe.mjs",
+    "config": "node configure.mjs"
+  },
+  "engines": { "node": ">=22" }
+}

@@ -1,0 +1,11 @@
+api-key
+.env
+.env.*
+!.env.example
+*.log
+node_modules/
+.DS_Store
+opencode.generated.jsonc
+verification/opencode.jsonc
+workspace/
+coverage/
