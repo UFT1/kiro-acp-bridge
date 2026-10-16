@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f2">
+  <meta name="description" content="An experimental local bridge from OpenCode to Kiro CLI through ACP. Your tools and approvals stay in OpenCode. Review subscription and sponsor requirements before live use.">
+  <title>Kiro ACP Bridge — one workspace, another route.</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="brand" href="#" aria-label="Kiro ACP Bridge home"><span class="brand-icon" aria-hidden="true">↔</span> kiro<span class="brand-light">/</span>bridge</a>
+    <nav aria-label="Main navigation">
+      <a href="#how-it-works">How it works</a>
+      <a href="#setup">Quick start</a>
+      <a class="nav-github" href="https://github.com/UFT1/kiro-acp-bridge" data-repo-path="">GitHub <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="status-dot" aria-hidden="true"></span> OPEN SOURCE · EXPERIMENTAL</div>
+        <h1 id="hero-title">Your workspace.<br>Your tools.<br><span>Another route.</span></h1>
+        <p class="hero-description">Keep coding in OpenCode. Connect your authenticated Kiro CLI through a small, local ACP bridge. Your tools and approval decisions stay right where they belong.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#setup">Explore the setup <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="https://github.com/UFT1/kiro-acp-bridge" data-repo-path="">Read the source <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="hero-note">No runtime dependencies. No credential extraction.<br>Unofficial. Not endorsed by Kiro, AWS, or OpenCode.</p>
+      </div>
+      <div class="hero-visual" aria-label="Illustrative bridge architecture, not a live session">
+        <div class="visual-topline"><span>LOCAL CONNECTION</span><span class="mono">127.0.0.1</span></div>
+        <div class="terminal">
+          <div class="terminal-bar"><span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>the short version</span><span aria-hidden="true">⌘</span></div>
+          <div class="terminal-body">
+            <p><span class="terminal-prompt">~</span> one workspace. two sides.</p>
+            <div class="route-node"><span class="node-symbol">&gt;_</span><div><strong>OpenCode</strong><small>Conversation · permissions · tools</small></div><span class="node-label">CLIENT</span></div>
+            <div class="route-wire"><span>↓</span> localhost / chat completions</div>
+            <div class="route-node bridge-node"><span class="node-symbol">↔</span><div><strong>Kiro ACP Bridge</strong><small>Translate. Hand off. Stay local.</small></div><span class="node-label">ADAPTER</span></div>
+            <div class="route-wire"><span>↓</span> official CLI / ACP</div>
+            <div class="route-node"><span class="node-symbol">✳</span><div><strong>Kiro CLI</strong><small>Your own authenticated session</small></div><span class="node-label">AGENT</span></div>
+            <div class="return-route"><span aria-hidden="true">↳</span> tool request → back to OpenCode</div>
+          </div>
+          <div class="terminal-bottom"><span><span class="status-dot" aria-hidden="true"></span> Local by design</span><span>Architecture preview</span></div>
+        </div>
+        <div class="visual-caption"><span class="caption-line"></span> A bridge, not a second workspace.</div>
+      </div>
+    </section>
+
+    <div class="facts wrap" aria-label="Project facts">
+      <div><strong>100% local adapter</strong><span>Kiro inference remains remote</span></div>
+      <div><strong>0 runtime dependencies</strong><span>Built with Node.js primitives</span></div>
+      <div><strong>OpenCode-owned tools</strong><span>Your existing permission flow</span></div>
+      <div><strong>MIT-licensed source</strong><span>Kiro terms still apply separately</span></div>
+    </div>
+
+    <section class="approval wrap" aria-labelledby="approval-title">
+      <div class="approval-icon" aria-hidden="true">!</div>
+      <div><p class="eyebrow">BEFORE YOU CONNECT</p><h2 id="approval-title">Company account? Get your sponsor’s approval.</h2>
+        <p>Obtain written approval from your project/account sponsor and Kiro administrator before company-managed use. Kiro/AWS permission for this provider-style ACP flow is unresolved; sponsor approval does not override vendor terms. Personal users must also confirm permission.</p>
+      </div>
+      <a class="text-link" href="https://github.com/UFT1/kiro-acp-bridge/blob/master/APPROVAL.md" data-repo-path="blob/master/APPROVAL.md">Approval checklist <span aria-hidden="true">↗</span></a>
+    </section>
+
+    <section class="section wrap" id="how-it-works" aria-labelledby="how-title">
+      <div class="section-heading"><div><p class="eyebrow">THE HANDOFF, NOT THE TAKEOVER</p><h2 id="how-title">One clear boundary.<br>You stay in control.</h2></div><p>Kiro supplies the next response or tool request. OpenCode decides what happens on your machine.</p></div>
+      <div class="feature-grid">
+        <article class="feature"><span class="feature-number">01 / CONNECT</span><div class="feature-icon" aria-hidden="true">⌁</div><h3>Use the official interface.</h3><p>The adapter starts your installed Kiro CLI through ACP. No extracted Kiro credentials or private inference endpoints.</p></article>
+        <article class="feature"><span class="feature-number">02 / HAND OFF</span><div class="feature-icon" aria-hidden="true">⇄</div><h3>Keep execution in OpenCode.</h3><p>Tool schemas become MCP handoff tools. The first tool request returns to OpenCode; the inner Kiro turn is cancelled.</p></article>
+        <article class="feature"><span class="feature-number">03 / CONTINUE</span><div class="feature-icon" aria-hidden="true">↵</div><h3>Follow your permission flow.</h3><p>OpenCode executes or denies the request, then sends the result in the next inference step. No second set of tool approvals.</p></article>
+      </div>
+    </section>
+
+    <section class="setup-section" id="setup" aria-labelledby="setup-title">
+      <div class="wrap setup-layout">
+        <div class="setup-intro"><p class="eyebrow">SMALL SETUP. EXPLICIT BOUNDARIES.</p><h2 id="setup-title">Start with a clone.<br>Not a leap of faith.</h2><p>Run the offline tests first. Resolve subscription permission and any sponsor, security, and client approvals before starting the bridge or a live probe.</p>
+          <ul class="requirements"><li><span aria-hidden="true">↳</span> Node.js 22 or newer</li><li><span aria-hidden="true">↳</span> OpenCode V2</li><li><span aria-hidden="true">↳</span> Your own authenticated Kiro CLI</li><li><span aria-hidden="true">↳</span> macOS or Linux</li></ul>
+          <a class="text-link" href="https://github.com/UFT1/kiro-acp-bridge#quick-start" data-repo-path="#quick-start">Full setup documentation <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="setup-steps">
+          <article class="setup-step"><div class="step-heading"><span class="step-number">01</span><h3>Clone &amp; test offline</h3></div><p>No Kiro login, inference, or credits needed for these tests.</p><div class="code-block"><button class="copy-button" type="button" aria-label="Copy clone and test commands" hidden>Copy</button><pre><code id="clone-commands">git clone https://github.com/UFT1/kiro-acp-bridge.git
+cd kiro-acp-bridge
+npm test</code></pre></div></article>
+          <article class="setup-step"><div class="step-heading"><span class="step-number">02</span><h3>After approval, connect your CLI</h3></div><p>Use your own login. Choose an exact model ID available to your account; never paste a subscription credential into the bridge.</p><div class="code-block"><button class="copy-button" type="button" aria-label="Copy model discovery command" hidden>Copy</button><pre><code>kiro-cli chat --list-models --format json</code></pre></div></article>
+          <article class="setup-step"><div class="step-heading"><span class="step-number">03</span><h3>Start locally. Configure OpenCode.</h3></div><p>Replace the example model ID. Keep this terminal running.</p><div class="code-block"><button class="copy-button" type="button" aria-label="Copy bridge startup commands" hidden>Copy</button><pre><code>export KIRO_ACP_MODELS="YOUR_EXACT_MODEL_ID"
+npm start</code></pre></div><p>In a second terminal, from the clone, set the same model ID (and any custom port/key settings). Generate your configuration:</p><div class="code-block"><button class="copy-button" type="button" aria-label="Copy configuration commands" hidden>Copy</button><pre><code>export KIRO_ACP_MODELS="YOUR_EXACT_MODEL_ID"
+node configure.mjs</code></pre></div><p>Merge the printed provider entry into your existing OpenCode config, then select <code>kiro-acp/&lt;your-model-id&gt;</code> in <code>/models</code>. Do not replace unrelated settings.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap limits-section" aria-labelledby="limits-title">
+      <div class="section-heading"><div><p class="eyebrow">HONESTLY EXPERIMENTAL</p><h2 id="limits-title">Know what’s on<br>the other side.</h2></div><p>A working prototype, not a production gateway or a faithful raw-model API.</p></div>
+      <div class="limits-grid">
+        <article><span class="limit-tag">CONTEXT</span><h3>A fresh session per step.</h3><p>The full transcript is reconstructed for each request. Long sessions, caching, and exact history fidelity need further validation.</p></article>
+        <article><span class="limit-tag">VISIBILITY</span><h3>Unknown is not free.</h3><p>Token usage, credit cost, and reasoning statistics are not reported. A zero in OpenCode does not mean zero Kiro usage.</p></article>
+        <article><span class="limit-tag">CAPABILITIES</span><h3>Text. Tools. One at a time.</h3><p>No images or structured output. One tool handoff per request. Sampling and reasoning-effort controls are not forwarded.</p></article>
+        <article><span class="limit-tag">SECURITY</span><h3>Local, not a sandbox.</h3><p>The endpoint is loopback-only and key-protected. Kiro still runs as your user, receives your context, and may retain sessions.</p></article>
+      </div>
+      <p class="compatibility">Live-tested during development: Kiro CLI 2.31.0 · explicit v2 ACP engine · OpenCode 2.0.25. Other versions and accounts need their own validation.</p>
+    </section>
+
+    <section class="closing wrap"><div><p class="eyebrow">READ IT. TEST IT. MAKE AN INFORMED CALL.</p><h2>A small bridge.<br>Everything out in the open.</h2></div><a class="button button-primary" href="https://github.com/UFT1/kiro-acp-bridge" data-repo-path="">Explore on GitHub <span aria-hidden="true">↗</span></a></section>
+  </main>
+  <footer class="site-footer wrap"><a class="brand" href="#"><span class="brand-icon" aria-hidden="true">↔</span> kiro<span class="brand-light">/</span>bridge</a><p>Independent project. No affiliation or endorsement.<br>MIT applies to the bridge, not your Kiro subscription.</p><div><a href="https://github.com/UFT1/kiro-acp-bridge/blob/master/LICENSE" data-repo-path="blob/master/LICENSE">License</a><a href="https://github.com/UFT1/kiro-acp-bridge/blob/master/APPROVAL.md" data-repo-path="blob/master/APPROVAL.md">Usage &amp; approval</a></div></footer>
+  <p id="copy-status" class="sr-only" role="status" aria-live="polite"></p>
+</body>
+</html>

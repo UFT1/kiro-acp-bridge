@@ -248,6 +248,26 @@ and permission ownership. Consult each project's current documentation before ch
 
 This is an independent implementation, not a fork; no Kiro Gateway source is included.
 
+## Landing page / GitHub Pages
+
+The responsive landing page lives in `site/` and has no build step. To preview locally,
+run `python3 -m http.server 8080 --directory site` from this clone and open
+`http://localhost:8080`. The site explains the architecture, setup, limitations, and
+sponsor/vendor approval requirements; it does not connect to the bridge or Kiro.
+Typography uses Google Fonts with system fallbacks; no analytics are included.
+
+To publish, open the repository's **Settings → Pages → Build and deployment** and
+choose **GitHub Actions** as the source. Then run **Deploy landing page** in the Actions
+tab, or push a change to `site/` on `master`. Only `site/` is uploaded, never runtime
+files, credentials, or generated configuration. The default address is
+`https://<owner>.github.io/kiro-acp-bridge/`.
+
+On the default project Pages address, repository links and the clone command follow the
+hosting owner automatically. Local previews and
+custom domains use the fallback repository in `site/script.js` and the HTML links;
+update those if changing ownership or deploying to a custom domain. Review Pages
+settings and rerun deployment after transferring the repository.
+
 ## License and terms
 
 [MIT](LICENSE). The license covers this bridge only. Kiro CLI and your subscription are
