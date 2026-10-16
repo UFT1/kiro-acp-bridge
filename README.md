@@ -14,8 +14,15 @@ OpenCode -> local Chat Completions endpoint -> Kiro CLI ACP -> Kiro
 
 This is an unofficial project, not affiliated with or endorsed by Kiro, AWS, or OpenCode.
 It does not bundle Kiro CLI, extract Kiro credentials, call private inference endpoints,
-or bypass subscription limits. If your company provides Kiro, confirm that your
-organization permits this integration and the data you send through it.
+or bypass subscription limits. These technical properties do not establish permission
+to use a Kiro subscription through this bridge.
+
+> **Approval required before company-managed use:** Obtain written approval from your
+> project/account sponsor and your organization's Kiro administrator before connecting
+> a company-provided subscription or sending company/client data. Complete any required
+> security and client reviews. Sponsor approval does not replace Kiro/AWS permission:
+> this provider-style use of ACP has an unresolved policy classification. See
+> [usage and approval guidance](APPROVAL.md) before running the bridge or a live probe.
 
 ## Why this exists
 
@@ -39,7 +46,32 @@ then sends the result on its next inference request.
 Live-tested with Kiro CLI **2.31.0**, its explicit **v2 ACP engine**, and OpenCode **2.0.25**.
 Other versions and models need validation. CLI version and engine generation are different.
 
+## Can other users use this?
+
+The source is public and MIT-licensed, and the runtime resolves each user's CLI and
+home directory rather than depending on the author's machine. That makes it available
+for others to evaluate, **not automatically authorized or verified for every account**.
+
+- Use your own authorized Kiro login and subscription with access to the exact model ID.
+  Do not share someone else's Kiro account, adapter key, or running endpoint.
+- Obtain the approvals above for company-managed use. Personal subscribers must also
+  confirm that this specific integration is permitted under their applicable Kiro terms.
+- Install the requirements, choose an available model, and generate your own OpenCode
+  configuration. Do not copy another user's key-file path or generated configuration.
+- Run `npm test` first; it uses a mock CLI without Kiro authentication or inference.
+  After approval, use the restricted live check in [Testing](#testing) with non-sensitive
+  sample data. Offline success does not prove your Kiro account or CLI version works.
+- This is a local, single-user prototype, not a shared/team inference service. Windows
+  cleanup and extended coding workloads remain unqualified.
+
+`package.json` is marked `private` to prevent accidental npm publication; installation
+is from a Git clone, not an npm package. No runtime dependency installation is needed.
+
 ## Quick start
+
+Complete the [approval checklist](APPROVAL.md#before-live-use) before `npm start`,
+`npm run probe`, or any live OpenCode/Kiro request. Cloning and offline tests do not
+require Kiro access and are not evidence of policy approval.
 
 ```sh
 git clone https://github.com/jovylle/kiro-acp-bridge.git
@@ -220,6 +252,10 @@ This is an independent implementation, not a fork; no Kiro Gateway source is inc
 
 [MIT](LICENSE). The license covers this bridge only. Kiro CLI and your subscription are
 governed by their own terms; using an official protocol is not a blanket compliance guarantee.
+The Kiro FAQ permits ACP-compatible IDEs and software-development automation, but also
+restricts certain third-party automation harnesses. It does not explicitly classify this
+OpenCode-owned inference loop. Read [APPROVAL.md](APPROVAL.md) for the official wording,
+the implementation-specific uncertainty, and the sponsor/vendor approval checklist.
 
 References: [OpenCode V2 providers](https://opencode.ai/v2/docs/providers),
 [Kiro ACP](https://kiro.dev/docs/cli/acp.md),
