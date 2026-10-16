@@ -2,6 +2,10 @@
 
 **Keep coding in OpenCode. Add Kiro as another model provider.**
 
+[**Visit the landing page →**](https://uft1.github.io/kiro-acp-bridge/)
+
+[![Kiro ACP Bridge landing page showing the OpenCode-to-Kiro architecture](docs/images/landing-page.png)](https://uft1.github.io/kiro-acp-bridge/)
+
 An experimental, dependency-free Node.js bridge that uses your authenticated Kiro CLI
 through ACP. OpenCode remains responsible for its tools and permission decisions.
 Use it alongside your other configured OpenCode providers without changing your default.
@@ -249,6 +253,8 @@ and permission ownership. Consult each project's current documentation before ch
 This is an independent implementation, not a fork; no Kiro Gateway source is included.
 
 ## Landing page / GitHub Pages
+
+**Live site:** [uft1.github.io/kiro-acp-bridge](https://uft1.github.io/kiro-acp-bridge/)
 
 The responsive landing page lives in `site/` and has no build step. To preview locally,
 run `python3 -m http.server 8080 --directory site` from this clone and open
