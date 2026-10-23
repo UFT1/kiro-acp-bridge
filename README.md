@@ -28,6 +28,58 @@ to use a Kiro subscription through this bridge.
 > this provider-style use of ACP has an unresolved policy classification. See
 > [usage and approval guidance](APPROVAL.md) before running the bridge or a live probe.
 
+## Recommended: use the native OpenCode plugin instead
+
+Since this bridge was built, the [`opencode-kiro`](https://www.npmjs.com/package/opencode-kiro)
+plugin has become available. It wraps [`kiro-acp-ai-provider`](https://www.npmjs.com/package/kiro-acp-ai-provider)
+and gives you Kiro as a native OpenCode provider — **one line, no server, no clone, no
+local endpoint**.
+
+```jsonc
+// ~/.config/opencode/opencode.jsonc
+{
+  "plugins": ["opencode-kiro@0.5.2"]
+}
+```
+
+That's the entire setup. After adding the plugin, Kiro models appear in your `/models`
+list as `kiro/<model-id>` with reasoning-effort variants.
+
+### Why the plugin is better for most users
+
+| | This bridge | `opencode-kiro` plugin |
+|---|---|---|
+| **Setup** | Clone repo, `npm start`, generate config, merge JSON, keep terminal open | One line in `plugins` |
+| **Session model** | Stateless — fresh ACP process + full transcript resend per turn | Stateful — one `kiro-cli` session per OpenCode session, sends only new turns |
+| **Compaction** | Re-sends entire history each turn, triggering Kiro's auto-compaction repeatedly | Kiro owns history natively; compaction works as designed |
+| **Tool execution** | OpenCode-owned (bridge captures + returns tool calls) | Kiro-owned (tool orchestration runs closer to `kiro-cli`) |
+| **Images** | Rejected | Supported (user-attached) |
+| **Parallel tool calls** | One per request | Supported |
+| **Credit visibility** | None (shows $0.00) | Live credits box in TUI sidebar |
+| **Dependencies** | None (dependency-free Node.js) | `@ai-sdk/provider` peer dep (already in OpenCode) |
+
+### When you might still want this bridge
+
+- You need **OpenCode to own all tool execution and permission decisions** — the bridge
+  captures tool calls and returns them to OpenCode instead of letting Kiro execute them.
+  The plugin lets Kiro handle tool orchestration natively.
+- You want a **dependency-free, auditable** single-repo implementation you fully control.
+- You're experimenting with ACP internals or building your own bridge.
+
+### Architecture comparison
+
+```text
+Plugin (recommended):
+  OpenCode → opencode-kiro plugin → kiro-acp-ai-provider → kiro-cli (ACP) → Kiro backend
+
+This bridge:
+  OpenCode → local HTTP endpoint (this repo) → kiro-cli (ACP, fresh per turn) → Kiro backend
+      ^                                           |
+      +---- tool request, not tool execution ------+
+```
+
+---
+
 ## Why this exists
 
 OpenCode can be your consistent coding environment while model access comes from
@@ -244,13 +296,18 @@ OpenCode permission denial were verified during development.
 
 ## Related projects
 
+[`opencode-kiro`](https://www.npmjs.com/package/opencode-kiro) is an OpenCode plugin that
+provides native Kiro integration via `kiro-acp-ai-provider`. It maintains session affinity,
+supports images and parallel tool calls, and requires no running server. **This is the
+recommended approach** — see [above](#recommended-use-the-native-opencode-plugin-instead).
+
 [Kiro Gateway](https://github.com/ankitcharolia/kiro-gateway) is a broader Python-based
 ACP gateway with OpenAI, Responses, Anthropic, and ACP interfaces. Its documented design
 lets Kiro execute native and forwarded MCP tools. This project's narrower focus is
 **handing unexecuted client tool requests back to OpenCode**, so OpenCode retains execution
 and permission ownership. Consult each project's current documentation before choosing.
 
-This is an independent implementation, not a fork; no Kiro Gateway source is included.
+This is an independent implementation, not a fork; no Kiro Gateway or opencode-kiro source is included.
 
 ## Landing page / GitHub Pages
 
